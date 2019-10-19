@@ -1,3 +1,8 @@
+/**
+Author: Mr.Bloom
+Date:   10/18/2019
+*/
+
 #ifndef TEST_RESULT_H
 #define TEST_RESULT_H
 

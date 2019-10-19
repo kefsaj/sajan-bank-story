@@ -1,5 +1,8 @@
+/**
+Author: Mr.Bloom
+Date:   10/18/2019
+*/
 #include "Testable.h"
-
 #include <iostream>
 
 Testable::Testable(const std::string& n): name(n) {}
