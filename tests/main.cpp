@@ -15,8 +15,8 @@ int main()
     
     for(auto& unitTest : unitTests)
     {
-        unitTest.build();
-        unitTest.run();
+        unitTest->build();
+        unitTest->run();
         delete unitTest;
     }
     

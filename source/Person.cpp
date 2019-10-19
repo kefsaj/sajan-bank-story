@@ -19,7 +19,7 @@ Date Person::getDOB() const {
 }
 
 unsigned char Person::getAGE() const {
-    return (Date::now() - DOB).years();
+    return (Date::now() - DOB).getYEAR();
 }
 
 std::string Person::getFNAME() const {
@@ -43,15 +43,15 @@ void Person::setDOB(Date const &D) {
     DOB = D;
 }
 
-void Person::setFNAME(string const &FN) {
+void Person::setFNAME(std::string const &FN) {
     FNAME = FN;
 }
 
-void Person::setLNAME(string const &LN) {
+void Person::setLNAME(std::string const &LN) {
     LNAME = LN;
 }
 
-void Person::setIDNum(string const &ID) {
+void Person::setIDNum(std::string const &ID) {
     IDNum = ID;
 }
 

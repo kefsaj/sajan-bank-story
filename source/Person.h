@@ -32,9 +32,9 @@ public:
     
     /* Setters */
     void setDOB(Date const &D);
-    void setFNAME(string const &FN);
-    void setLNAME(string const &LN);
-    void setIDNum(string const &ID);
+    void setFNAME(std::string const &FN);
+    void setLNAME(std::string const &LN);
+    void setIDNum(std::string const &ID);
     void setSEX(const bool S);
 };
 

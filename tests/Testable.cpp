@@ -5,30 +5,38 @@ Date:   10/18/2019
 
 #include "Testable.h"
 #include <iostream>
+#include <chrono>
+#include <iomanip>
 
-Testable::Testable(const std::string& n): name(n) {}
+using namespace std;
+
+Testable::Testable(const string& n): name(n) {}
 
 void Testable::run()
 {
-    std::cout << "Running " << name << " tests" << std::endl;
-    
-    std::cout << std::endl;
-    
-    std::cout << "Test Status" << std::endl;
-    
-    while(tests.size() > 0)
+    cout << "Running " << name << endl << endl;
+    cout << "Execution Time (ms) | Status | Remarks" << endl;
+    cout << "======================================" << endl;
+    while (tests.size() > 0)
     {
-        auto test = tests.front();
-        TestResult testResult = test();
-        tests.pop();
+        auto& test = tests.front();
         
-        if(testResult.passed)
-        {
-            std::cout << "Passed" << std::endl;
-        }
+        auto before = chrono::high_resolution_clock::now();
+        TestResult result = test();
+        auto after = chrono::high_resolution_clock::now();
+        auto duration = chrono::duration_cast<chrono::microseconds>(after - before);
+        cout << left << setw(20) << duration.count() << left << setw(2) << "|";
+        
+        if (result.passed)
+            cout << "\033[1;32mPassed\033[0m | -------" << endl;
         else
         {
-            std::cout << "Failed: Expected " << testResult.expected << " but obtained " << testResult.result << std::endl;
+            cout << "\033[1;31mFailed\033[0m | Expected: " << result.expected
+                 << ", but obtained: " << result.result << endl;
         }
+        
+        tests.pop();
     }
+    
+    cout << endl;
 }

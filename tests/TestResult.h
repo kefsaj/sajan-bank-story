@@ -15,6 +15,6 @@ public:
     std::string expected;
     std::string result;
     bool passed;
-}
+};
 
 #endif /* TEST_RESULT_H */

@@ -69,8 +69,9 @@ Date& Date::operator-(const Date& other) {
 
 Date Date::now() {
     
-    time_t timenow = time(0);
+    /*time_t timenow = time(0);
     struct tm* localtm = localtime(&timenow);
     
-    return Date(localtm->tm_mday, localtm->tm_mon, localtm->year);
+    return Date(localtm->tm_mday, localtm->tm_mon, localtm->tm_year);*/
+    return Date();
 }

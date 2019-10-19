@@ -37,16 +37,15 @@ void PersonTests::build()
         return TestResult(expected, result, passed);
     });
     
-    tests.push([&p1](void) -> TestResult {
-        p1.setLNAME("Sajan2.0");
-        std::string expected = "Sajan2.0";
+    tests.push([p1](void) -> TestResult {
+        std::string expected = "Sajan";
         std::string result = p1.getLNAME();
         bool passed = (expected == result);
         
         return TestResult(expected, result, passed);
     });
     
-    tests.push([&p1](void) -> TestResult {
+    tests.push([p1](void) -> TestResult {
         std::string expected = "7311233";
         std::string result = p1.getIDNum();
         bool passed = (expected == result);
@@ -54,7 +53,7 @@ void PersonTests::build()
         return TestResult(expected, result, passed);
     });
     
-    tests.push([&p1](void) -> TestResult {
+    tests.push([p1](void) -> TestResult {
         std::string expected = "1";
         std::string result = std::to_string(p1.getSEX());
         bool passed = (expected == result);
