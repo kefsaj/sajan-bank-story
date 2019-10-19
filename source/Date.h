@@ -9,11 +9,11 @@ class Date
 private:
     uint8_t DAY;
     uint8_t MONTH;
-    uint8_t YEAR;
+    uint16_t YEAR;
     
 public:
     Date() = default;
-    Date(uint8_t D, uint8_t M, uint8_t Y);
+    Date(uint8_t D, uint8_t M, uint16_t Y);
     
     /* Getters */
     uint8_t getDAY() const;
@@ -21,10 +21,7 @@ public:
     uint8_t getYEAR() const;
     
     /* Setters */
-    void setDAY(uint8_t D);
-    void setMONTH(uint8_t M);
-    void setYEAR(uint8_t Y);
-    void setDate(uint8_t D, uint8_t M, uint8_t Y);
+    void setDate(uint8_t D, uint8_t M, uint16_t Y);
     
     /* Operators */
     Date& operator+(const Date& other);

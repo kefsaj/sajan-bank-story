@@ -4,9 +4,9 @@
 #include <ctime>
 #include <stdexcept>
 
-Date::Date(uint8_t D, uint8_t M, uint8_t Y) {
+Date::Date(uint8_t D, uint8_t M, uint16_t Y) {
     
-    if(Y < 1970 || Y > 2039 || M > 12 || D > 31) {
+    if(Y < 1970 || M > 12 || D > 31) {
         throw std::logic_error("Invalid date range");
     }
     
@@ -30,7 +30,7 @@ uint8_t Date::getYEAR() const {
 }
 
 /* Setters*/
-void Date::setDate(uint8_t D, uint8_t M, uint8_t Y)
+void Date::setDate(uint8_t D, uint8_t M, uint16_t Y)
 {
     if(Y < 1970 || M > 12 || D > 31) {
         throw std::logic_error("Invalid date range");
@@ -45,13 +45,15 @@ void Date::setDate(uint8_t D, uint8_t M, uint8_t Y)
 /* Operators */
 Date& Date::operator+(const Date& other) {
     
+    // TODO: Finish implementation
+    
     if(DAY + other.DAY > 12) {
         MONTH = 1 + (MONTH + 1) % 13;
     }
     
     DAY = 1 + (DAY + other.DAY) % 32;
     
-    if(MONTH )
+    // if(MONTH )
     
     YEAR += other.YEAR;
     
@@ -59,6 +61,8 @@ Date& Date::operator+(const Date& other) {
 }
 
 Date& Date::operator-(const Date& other) {
+    
+    // TODO: Finish implementation
     
     return *this;
 }
