@@ -34,17 +34,17 @@ void DialogueTests::build()
     
     tests.push([dg](void) -> TestResult {
         std::string expected = "Yeah... I figured";
-        std::string result = std::to_string(dg.getDialogueLines().back().getLineToSay());
+        std::string result = dg.getDialogueLines().back().getLineToSay();
         bool passed = (expected == result);
         
         return TestResult(expected, result, passed);
     });
     
     tests.push([dg](void) -> TestResult {
-        DialogueLine dg2(dg);
+        Dialogue dg2(dg);
         dg2.setDialogueLines({});
         std::string expected = "0";
-        std::string result = std::to_string(dg.getDialogueLines().size());
+        std::string result = std::to_string(dg2.getDialogueLines().size());
         bool passed = (expected == result);
         
         return TestResult(expected, result, passed);

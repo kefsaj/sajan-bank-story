@@ -8,10 +8,10 @@ Date:   10/20/2019
 
 #include "Testable.h"
 
-class DialogueTest: public Testable {
+class DialogueTests: public Testable {
 public:
-    DialogueTest(const std::string& n);
+    DialogueTests(const std::string& n);
     virtual void build();
-}
+};
 
 #endif /* DIALOGUE_TESTS_H */
