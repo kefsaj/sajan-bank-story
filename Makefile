@@ -7,10 +7,12 @@ SRCDIR=source
 TESTDIR=tests
 
 unittests: tests.o PersonTests.o Testable.o \
-	   TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o
+	   TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o \
+		DialogueTests.o Dialogue.o
 	$(GXX) $(GXXFLAGS) -o unittests \
               tests.o PersonTests.o Testable.o \
-			  TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o
+			  TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o \
+				DialogueTests.o Dialogue.o 
 
 tests.o: $(TESTDIR)/main.cpp
 	$(GXX) $(GXXFLAGS) -c $(TESTDIR)/main.cpp -o tests.o
@@ -24,6 +26,11 @@ DialogueLineTests.o: $(TESTDIR)/DialogueLineTests.h $(TESTDIR)/DialogueLineTests
 				 	$(TESTDIR)/Testable.h $(SRCDIR)/DialogueLine.h \
 					$(TESTDIR)/TestResult.h 
 	$(GXX) $(GXXFLAGS) -c $(TESTDIR)/DialogueLineTests.cpp
+
+DialogueTests.o: $(TESTDIR)/DialogueTests.h $(TESTDIR)/DialogueTests.cpp \
+					$(TESTDIR)/Testable.h $(SRCDIR)/Dialogue.h \
+					$(TESTDIR)/TestResult.h
+	$(GXX) $(GXXFLAGS) -c $(TESTDIR)/DialogueTests.cpp
 
 Testable.o: $(TESTDIR)/Testable.cpp $(TESTDIR)/Testable.h \
 				 $(TESTDIR)/TestResult.h
@@ -41,7 +48,9 @@ Person.o: $(SRCDIR)/Person.cpp $(SRCDIR)/Person.h $(SRCDIR)/Date.h
 DialogueLine.o: $(SRCDIR)/DialogueLine.cpp $(SRCDIR)/DialogueLine.h \
 				$(SRCDIR)/Person.h
 	$(GXX) $(GXXFLAGS) -c $(SRCDIR)/DialogueLine.cpp
-	
+
+Dialogue.o: $(SRCDIR)/Dialogue.cpp $(SRCDIR)/Dialogue.h $(SRCDIR)/DialogueLine.h
+	$(GXX) $(GXXFLAGS) -c $(SRCDIR)/Dialogue.cpp
 
 clean:
 	-rm *.o
