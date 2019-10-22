@@ -8,11 +8,11 @@ TESTDIR=tests
 
 unittests: tests.o PersonTests.o Testable.o \
 	   TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o \
-		DialogueTests.o Dialogue.o
+		DialogueTests.o Dialogue.o DialoguePlayer.o
 	$(GXX) $(GXXFLAGS) -o unittests \
               tests.o PersonTests.o Testable.o \
 			  TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o \
-				DialogueTests.o Dialogue.o 
+				DialogueTests.o Dialogue.o  DialoguePlayer.o
 
 tests.o: $(TESTDIR)/main.cpp
 	$(GXX) $(GXXFLAGS) -c $(TESTDIR)/main.cpp -o tests.o
@@ -52,5 +52,7 @@ DialogueLine.o: $(SRCDIR)/DialogueLine.cpp $(SRCDIR)/DialogueLine.h \
 Dialogue.o: $(SRCDIR)/Dialogue.cpp $(SRCDIR)/Dialogue.h $(SRCDIR)/DialogueLine.h
 	$(GXX) $(GXXFLAGS) -c $(SRCDIR)/Dialogue.cpp
 
+DialoguePlayer.o: $(SRCDIR)/DialoguePlayer.cpp $(SRCDIR)/DialoguePlayer.h $(SRCDIR)/Dialogue.h
+	$(GXX) $(GXXFLAGS) -c $(SRCDIR)/DialoguePlayer.cpp
 clean:
 	-rm *.o
