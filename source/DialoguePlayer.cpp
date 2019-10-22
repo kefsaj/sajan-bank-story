@@ -15,7 +15,6 @@ DialoguePlayer DialoguePlayer::sharedInstance()
 
 void DialoguePlayer::playDialogue(const Dialogue& dialogue) const
 {
-    
     static const uint32_t charDelay = 50 * 1000;
 
     for(auto& dialogueLine : dialogue.getDialogueLines())
@@ -25,10 +24,13 @@ void DialoguePlayer::playDialogue(const Dialogue& dialogue) const
         Person p = dialogueLine.getPerson();
         
         if(p.getSEX())
+        {
             std::cout << "Mr. " << p.getLNAME() << ": " << std::flush;
-
+        }
         else
+        {
             std::cout << "Ms. " << p.getLNAME() << ": " << std::flush;
+        }
         
         for(auto& ch : dialogueLine.getLineToSay())
         {
@@ -39,6 +41,5 @@ void DialoguePlayer::playDialogue(const Dialogue& dialogue) const
         usleep(lineDelay);
         
         std::cout << std::endl;
-            
     }
 }
