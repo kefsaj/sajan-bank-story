@@ -7,6 +7,7 @@
 #define DATE_H
 
 #include <stdint.h>
+#include <string>
 
 class Date
 {
@@ -25,6 +26,7 @@ public:
     uint8_t getDAY() const;
     uint8_t getMONTH() const;
     uint8_t getYEAR() const;
+    std::string formattedString() const;
     
     /* Setters */
     void setDate(uint8_t D, uint8_t M, uint16_t Y);

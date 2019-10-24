@@ -16,7 +16,7 @@ static inline bool isLeapYear(uint16_t year)
 
 static uint8_t numDaysInMonth(uint8_t month, uint16_t year)
 {
-    static const array<uint8_t, 12> daysInMonth {
+    static const std::array<uint8_t, 12> daysInMonth {
         31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
     };
     
@@ -39,7 +39,7 @@ Date::Date(uint8_t D, uint8_t M, uint16_t Y)
 Date::Date(uint32_t nDays)
 {
     uint16_t yearsSinceRefDate;
-    uint8_t monthsSinceRefDate, daysSinceRefDate;
+    uint8_t monthsSinceRefDate;
     
     yearsSinceRefDate = nDays / 365;
     nDays -= yearsSinceRefDate * 365;
@@ -55,13 +55,13 @@ Date::Date(uint32_t nDays)
     
     nDays -= numDaysInLeapYears;
     monthsSinceRefDate = 1;
-    uint8_t daysInMonth = daysInMonth(monthsSinceRefDate, YEAR);
+    uint8_t daysInMonth = numDaysInMonth(monthsSinceRefDate, YEAR);
     
-    while(nDays >= numDaysInMonth)
+    while(nDays >= daysInMonth)
     {
         nDays -= daysInMonth;
         monthsSinceRefDate++;
-        daysInMonth = daysInMonth(monthsSinceRefDate, YEAR);
+        daysInMonth = numDaysInMonth(monthsSinceRefDate, YEAR);
     }
         
     MONTH = refDATE.MONTH + monthsSinceRefDate - 1;
@@ -82,6 +82,19 @@ uint8_t Date::getMONTH() const
 uint8_t Date::getYEAR() const
 {
     return YEAR;
+}
+
+std::string Date::formattedString() const
+{
+    std::string dateString;
+    
+    dateString = ( MONTH < 10 ? "0" + std::to_string(MONTH) : std::to_string(MONTH) );
+    dateString += "/";
+    dateString += ( DAY < 10 ? "0" + std::to_string(DAY) : std::to_string(DAY) );
+    dateString += "/";
+    dateString += std::to_string(YEAR);
+    
+    return dateString;
 }
 
 /* Setters*/
@@ -105,9 +118,9 @@ Date& Date::operator+(const Date& other)
     
     Date newDate(nDays);
     
-    this->DAY = newDate->DAY;
-    this->MONTH = newDate->MONTH;
-    this->YEAR = newDate->YEAR;
+    this->DAY = newDate.DAY;
+    this->MONTH = newDate.MONTH;
+    this->YEAR = newDate.YEAR;
     
     return *this;
 }
@@ -121,9 +134,9 @@ Date& Date::operator-(const Date& other)
     
     Date newDate(nDays);
     
-    this->DAY = newDate->DAY;
-    this->MONTH = newDate->MONTH;
-    this->YEAR = newDate->YEAR;
+    this->DAY = newDate.DAY;
+    this->MONTH = newDate.MONTH;
+    this->YEAR = newDate.YEAR;
     
     return *this;
 }
@@ -157,7 +170,7 @@ Date Date::refDate()
 }
 
 /* Private */
-uint32_t daysSinceRefDate()
+uint32_t Date::daysSinceRefDate() const
 {
     uint32_t numDays = YEAR * 365;
     numDays += 1 + (YEAR - Date::refDATE.YEAR) / 4; // number of leap years
