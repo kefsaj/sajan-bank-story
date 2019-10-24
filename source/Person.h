@@ -10,7 +10,7 @@
 #include "Date.h"
 
 class Person {
-private:
+protected:
     std::string IDNum;
     std::string FNAME;
     std::string LNAME;
