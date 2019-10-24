@@ -26,7 +26,7 @@ virtual Date SBAccount::getAccOpenDt() const
     return AccOpenDt;
 }
 
-virtual double getBalance() const
+virtual double SBAccount::getBalance() const
 {
     return balance;
 }
@@ -36,4 +36,9 @@ void SBAccount::deposit( double ToDeposit)
     if( ToDeposit <= 0 )
         throw logic_error("Cannot deposit negative ammount.");
     balance += ToDeposit;
+}
+
+double SBAccount::getAccNumber() const
+{
+    return AccNumber;
 }

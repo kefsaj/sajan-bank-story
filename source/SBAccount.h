@@ -19,10 +19,13 @@ public:
     /* Getters */
     virtual Date getAccOpenDt() const;
     virtual double getBalance() const;
-    
+    double getAccNumber() const;
+        
 protected:
     Date accOpenDt;
     double balance;
+private:
+    static double AccNumber = 0;
 };
 
 #endif /* SBACCOUNT_H */

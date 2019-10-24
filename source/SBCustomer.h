@@ -15,6 +15,7 @@ public:
     SBCustomer(const Person& customer, const SBAccount& acc, const Date& dt);
     Date getStartDate();
 private:
+    Person<acc> customer;
     Date sinceDt;
 };
 #endif /* SB_CUSTOMER_H */
