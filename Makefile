@@ -8,11 +8,11 @@ TESTDIR=tests
 
 unittests: tests.o PersonTests.o Testable.o \
 	   TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o \
-		DialogueTests.o Dialogue.o DialoguePlayer.o
+		DialogueTests.o Dialogue.o DialoguePlayer.o DateTests.o
 	$(GXX) $(GXXFLAGS) -o unittests \
               tests.o PersonTests.o Testable.o \
 			  TestResult.o Date.o Person.o DialogueLine.o DialogueLineTests.o \
-				DialogueTests.o Dialogue.o  DialoguePlayer.o
+				DialogueTests.o Dialogue.o  DialoguePlayer.o DateTests.o
 
 tests.o: $(TESTDIR)/main.cpp
 	$(GXX) $(GXXFLAGS) -c $(TESTDIR)/main.cpp -o tests.o
@@ -31,6 +31,11 @@ DialogueTests.o: $(TESTDIR)/DialogueTests.h $(TESTDIR)/DialogueTests.cpp \
 					$(TESTDIR)/Testable.h $(SRCDIR)/Dialogue.h \
 					$(TESTDIR)/TestResult.h
 	$(GXX) $(GXXFLAGS) -c $(TESTDIR)/DialogueTests.cpp
+
+DateTests.o: $(TESTDIR)/DateTests.cpp $(TESTDIR)/TestResult.h \
+				  $(TESTDIR)/DateTests.h $(SRCDIR)/Date.h \
+				  $(TESTDIR)/Testable.h
+	$(GXX) $(GXXFLAGS) -c $(TESTDIR)/DateTests.cpp
 
 Testable.o: $(TESTDIR)/Testable.cpp $(TESTDIR)/Testable.h \
 				 $(TESTDIR)/TestResult.h
