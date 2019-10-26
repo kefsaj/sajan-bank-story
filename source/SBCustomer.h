@@ -8,14 +8,20 @@
 
 #include "Person.h"
 #include "SBAccount.h"
+#include <vector>
 
 class SBCustomer : public Person
 {
 public:
-    SBCustomer(const Person& customer, const SBAccount& acc, const Date& dt);
-    Date getStartDate();
+    SBCustomer(const Person& c, const Date& dt, const std::vector<SBAccount*>& Acct);
+    void openAccount(SBAccount* acct);
+    void closeAccount(SBAccount* acct);
+    Date getStartDate() const;
+    std::vector<SBAccount*> getAccount() const;
+    
 private:
-    Person<acc> customer;
+    Person customer;
     Date sinceDt;
+    std::vector<SBAccount*> Accounts;
 };
 #endif /* SB_CUSTOMER_H */

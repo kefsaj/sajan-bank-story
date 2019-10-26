@@ -13,7 +13,7 @@ class SBChecking : public SBAccount
 public:
     SBChecking() = default;
     SBChecking(const SBAccount& acct);
-    SBChecking(const Date& created, double bal);
+    SBChecking(const std::string& AccNum, const Date& created, double bal);
     virtual void withdraw(double ToWithdraw);
 };
 

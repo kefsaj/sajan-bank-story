@@ -4,29 +4,29 @@ Date: 10/23/19
 */
 
 #include "SBAccount.h"
-
 #include <stdexcept>
 
-SBAccount::SBAccount(const Date& created, double bal) :
+SBAccount::SBAccount(const std::string& AccNum, const Date& created, double bal) :
+    AccNumber(AccNum),
     balance(bal)
 {
     if(created > Date::now())
     {
-        throw logic_error("Account cannot be opened in the future.");
+        throw std::logic_error("Account cannot be opened in the future.");
     }
     
     accOpenDt = created;
 }
 
-virtual SBAccount::~SBAccount()
+SBAccount::~SBAccount()
 {}
 
-virtual Date SBAccount::getAccOpenDt() const
+Date SBAccount::getAccOpenDt() const
 {
     return AccOpenDt;
 }
 
-virtual double SBAccount::getBalance() const
+double SBAccount::getBalance() const
 {
     return balance;
 }
@@ -34,11 +34,11 @@ virtual double SBAccount::getBalance() const
 void SBAccount::deposit( double ToDeposit)
 {
     if( ToDeposit <= 0 )
-        throw logic_error("Cannot deposit negative ammount.");
+        throw std::logic_error("Cannot deposit negative ammount.");
     balance += ToDeposit;
 }
 
-double SBAccount::getAccNumber() const
+std::string SBAccount::getAccNumber() const
 {
     return AccNumber;
 }

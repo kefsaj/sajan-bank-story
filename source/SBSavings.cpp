@@ -5,19 +5,27 @@
 
 #include "SBSavings.h"
 
-SBSavings::SBSavings(const SBAccount& acct, const double intRate) :
-SBAccount(acct),
-interestRate(intRate)
+SBSavings::SBSavings(const SBAccount& acct, double intRate) :
+    SBAccount(acct),
+    interestRate(intRate)
 {}
 
-SBSavings::SBSavings(const Date& created, double bal, double intRate) :
-SBAccount(created, bal),
-interestRate(intRate)
+SBSavings::SBSavings(const std::string& AccNum, const Date& created, double bal, double intRate) :
+    SBAccount(AccNum, created, bal),
+    interestRate(intRate)
 {}
 
 void SBSavings::withdraw(double ToWithdraw)
 {
-    SBAccount::balance -= ToWithdraw;
+    if(balance >= ToWithdraw)
+    {
+        balance -= ToWithdraw;
+    }
+    else
+    {
+        throw ("Insufficient balance.");
+    }
+    
 }
 
 double SBSaving::getInterestRate() const

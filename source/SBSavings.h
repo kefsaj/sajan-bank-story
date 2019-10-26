@@ -13,8 +13,8 @@ class SBSavings : public SBAccount
 {
 public:
     SBSavings() = default;
-    SBSavings(const SBAccount& acct, const double intRate);
-    SBSavings(const Date& created, double bal, double intRate);
+    SBSavings(const SBAccount& acct, double intRate);
+    SBSavings(const std::string& AccNum, const Date& created, double bal, double intRate);
     virtual void withdraw(double ToWithdraw);
     
     /* Getters */

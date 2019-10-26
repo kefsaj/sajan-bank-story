@@ -7,11 +7,12 @@
 #define SBACCOUNT_H
 
 #include "Date.h"
+#include <string.h>
 
 class SBAccount
 {
 public:
-    SBAccount(const Date& created, double bal);
+    SBAccount(const std::string& AccNum, const Date& created, double bal);
     virtual ~SBAccount();
     virtual void withdraw(double ToWithdraw) = 0;
     virtual void deposit(double ToDeposit);
@@ -19,13 +20,12 @@ public:
     /* Getters */
     virtual Date getAccOpenDt() const;
     virtual double getBalance() const;
-    double getAccNumber() const;
+    virtual std::string getAccNumber() const;
         
 protected:
     Date accOpenDt;
     double balance;
-private:
-    static double AccNumber = 0;
+    std::string AccNumber;
 };
 
 #endif /* SBACCOUNT_H */
